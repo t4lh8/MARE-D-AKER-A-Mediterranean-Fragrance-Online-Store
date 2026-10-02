@@ -1,5 +1,5 @@
 /* ------------------------------------------------------------------
-   MARE D'AKER — brand copy, collections and the fragrance catalogue.
+   MARE D'AKER - brand copy, collections and the fragrance catalogue.
    Edit this file to change products; the rest of the site reads from it.
 ------------------------------------------------------------------ */
 
@@ -7,15 +7,15 @@ const BRAND = {
   name: "MARE D'AKER",
   tagline: "A Mediterranean Fragrance Universe",
   intro:
-    "Perfumes drawn from the Mediterranean — salt on warm skin, citrus groves at noon, " +
+    "Perfumes drawn from the Mediterranean - salt on warm skin, citrus groves at noon, " +
     "cypress shade and the blue hour by the sea. Composed in small batches, made to be lived in.",
   currency: "kr",
   freeShippingOver: 1200,
   shippingFlat: 79,
   story:
     "MARE D'AKER began with a single idea: that a scent can hold a coastline. " +
-    "Each fragrance maps a place along the Mediterranean — from the lemon terraces of Capri " +
-    "to the wild myrtle of Sardinia — built around natural-feeling notes and a clean, modern signature.",
+    "Each fragrance maps a place along the Mediterranean - from the lemon terraces of Capri " +
+    "to the wild myrtle of Sardinia - built around natural-feeling notes and a clean, modern signature.",
 };
 
 /* Fragrance families drive the colour of each bottle and the shop filters. */
@@ -60,7 +60,7 @@ const PRODUCTS = [
     tagline: "Green fig, milky coconut and sun-bleached wood.",
     notes: { top: ["Fig leaf", "Green mandarin"], heart: ["Fig fruit", "Coconut milk"], base: ["Sandalwood", "Cedar", "Tonka"] },
     description:
-      "Shade under a fig tree in late summer — green and leafy up top, creamy and woody underneath. " +
+      "Shade under a fig tree in late summer - green and leafy up top, creamy and woody underneath. " +
       "Comforting without ever turning heavy.",
     sizes: [{ ml: 50, price: 929 }, { ml: 100, price: 1340 }],
   },
@@ -81,7 +81,7 @@ const PRODUCTS = [
     tagline: "Cypress, vetiver and dry incense.",
     notes: { top: ["Cypress", "Bergamot", "Juniper"], heart: ["Lavender", "Geranium"], base: ["Vetiver", "Incense", "Oakmoss"] },
     description:
-      "Cool green cypress lines over a smoky, earthy base. Composed and quietly serious — a scent for long evenings.",
+      "Cool green cypress lines over a smoky, earthy base. Composed and quietly serious - a scent for long evenings.",
     sizes: [{ ml: 50, price: 899 }, { ml: 100, price: 1290 }],
   },
   {
@@ -91,7 +91,7 @@ const PRODUCTS = [
     tagline: "Skin, salt and golden amber.",
     notes: { top: ["Sea salt", "Bergamot"], heart: ["Ambergris accord", "Immortelle"], base: ["Amber", "Labdanum", "Musk"] },
     description:
-      "Warm skin after a day in the sun — salty, golden and close to the body. Our most addictive, low-key sensual scent.",
+      "Warm skin after a day in the sun - salty, golden and close to the body. Our most addictive, low-key sensual scent.",
     sizes: [{ ml: 50, price: 989 }, { ml: 100, price: 1420 }],
   },
   {
@@ -111,7 +111,7 @@ const PRODUCTS = [
     tagline: "Wild myrtle and sea-cliff herbs.",
     notes: { top: ["Myrtle", "Lemon", "Mint"], heart: ["Rosemary", "Bay leaf"], base: ["Oakmoss", "Vetiver", "Musk"] },
     description:
-      "The scrubland above the sea — aromatic, green and a little wild. Herbal and fresh with a grounded, mossy base.",
+      "The scrubland above the sea - aromatic, green and a little wild. Herbal and fresh with a grounded, mossy base.",
     sizes: [{ ml: 50, price: 879 }, { ml: 100, price: 1250 }],
   },
   {
@@ -121,7 +121,7 @@ const PRODUCTS = [
     tagline: "Sicilian rose with saffron warmth.",
     notes: { top: ["Saffron", "Raspberry"], heart: ["Damask rose", "Peony"], base: ["Patchouli", "Amber", "Musk"] },
     description:
-      "A modern rose — spiced with saffron and deepened by patchouli, never old-fashioned. Rich but refined.",
+      "A modern rose - spiced with saffron and deepened by patchouli, never old-fashioned. Rich but refined.",
     sizes: [{ ml: 50, price: 959 }, { ml: 100, price: 1380 }],
   },
   {
@@ -131,7 +131,7 @@ const PRODUCTS = [
     tagline: "Driftwood, marine salt and clean musk.",
     notes: { top: ["Marine salt", "Grapefruit"], heart: ["Driftwood", "Clary sage"], base: ["Ambrette", "Cedar", "Musk"] },
     description:
-      "Smooth, salty woods with a soft musky dry-down. Understated and versatile — an everyday signature.",
+      "Smooth, salty woods with a soft musky dry-down. Understated and versatile - an everyday signature.",
     sizes: [{ ml: 50, price: 909 }, { ml: 100, price: 1310 }],
   },
   {
@@ -141,7 +141,7 @@ const PRODUCTS = [
     tagline: "Orange blossom in full sun.",
     notes: { top: ["Neroli", "Bergamot"], heart: ["Orange blossom", "Honey accord"], base: ["White musk", "Blond woods"] },
     description:
-      "Soft, radiant orange blossom with a hint of honey. Elegant and clean — flattering on everyone.",
+      "Soft, radiant orange blossom with a hint of honey. Elegant and clean - flattering on everyone.",
     sizes: [{ ml: 50, price: 939 }, { ml: 100, price: 1350 }],
   },
   {
@@ -151,7 +151,7 @@ const PRODUCTS = [
     tagline: "Fig-leaf oud, soft and sunlit.",
     notes: { top: ["Fig leaf", "Bergamot"], heart: ["Oud accord", "Rose"], base: ["Labdanum", "Amber", "Sandalwood"] },
     description:
-      "A lighter, Mediterranean take on oud — warm resins kept airy by fig and citrus. Our richest, longest-lasting scent.",
+      "A lighter, Mediterranean take on oud - warm resins kept airy by fig and citrus. Our richest, longest-lasting scent.",
     sizes: [{ ml: 50, price: 1190 }, { ml: 100, price: 1690 }],
   },
 ];

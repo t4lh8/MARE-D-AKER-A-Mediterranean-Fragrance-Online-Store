@@ -47,7 +47,7 @@ const Art = (() => {
 </svg>`;
   }
 
-  // Layered waves for the hero — gentle horizontal drift via CSS.
+  // Layered waves for the hero - gentle horizontal drift via CSS.
   function waves() {
     const layer = (cls, d, fill, op) =>
       `<path class="${cls}" d="${d}" fill="${fill}" fill-opacity="${op}"/>`;

@@ -174,7 +174,7 @@ document.addEventListener("submit", (e) => {
   const form = e.target;
   if (form.matches('[data-action="newsletter"]')) {
     e.preventDefault();
-    form.querySelector(".news-note").textContent = "Welcome aboard — check your inbox for 10% off.";
+    form.querySelector(".news-note").textContent = "Welcome aboard - check your inbox for 10% off.";
     form.querySelector('input[name="email"]').value = "";
   } else if (form.matches('[data-action="place-order"]')) {
     e.preventDefault();
@@ -212,7 +212,7 @@ function validate(form) {
     const expDate = new Date(2000 + +exp[2], +exp[1], 0, 23, 59);
     if (expDate < new Date()) errs.exp = "Card has expired.";
   }
-  if (!/^\d{3,4}$/.test(g("cvc"))) errs.cvc = "3–4 digits.";
+  if (!/^\d{3,4}$/.test(g("cvc"))) errs.cvc = "3-4 digits.";
   return errs;
 }
 
