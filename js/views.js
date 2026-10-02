@@ -151,7 +151,7 @@ const Views = (() => {
               <option value="popular" ${sort === "popular" ? "selected" : ""}>Most loved</option>
               <option value="price-asc" ${sort === "price-asc" ? "selected" : ""}>Price: low to high</option>
               <option value="price-desc" ${sort === "price-desc" ? "selected" : ""}>Price: high to low</option>
-              <option value="name" ${sort === "name" ? "selected" : ""}>Name A–Z</option>
+              <option value="name" ${sort === "name" ? "selected" : ""}>Name A-Z</option>
             </select>
           </div>
           ${fam !== "all" || gender !== "all" || q ? `<a class="link" href="#/shop">Clear filters</a>` : ""}
@@ -198,10 +198,10 @@ const Views = (() => {
             <button data-action="pq-inc" aria-label="Increase">+</button>
           </div>
           <button class="btn btn-primary btn-lg" data-action="add-detail" data-id="${p.id}">
-            Add to bag — <span data-buy-price>${money(p.sizes[0].price)}</span>
+            Add to bag - <span data-buy-price>${money(p.sizes[0].price)}</span>
           </button>
         </div>
-        <p class="ship-note">Free shipping over ${money(BRAND.freeShippingOver)} · Ships in 1–2 days</p>
+        <p class="ship-note">Free shipping over ${money(BRAND.freeShippingOver)} · Ships in 1-2 days</p>
 
         <div class="notes">
           <h4>Fragrance notes</h4>
@@ -227,7 +227,7 @@ const Views = (() => {
       return `
       <section class="narrow center-empty">
         <h1 class="display">Your bag is empty</h1>
-        <p class="muted">Nothing here yet — find your coastline.</p>
+        <p class="muted">Nothing here yet - find your coastline.</p>
         <a class="btn btn-primary" href="#/shop">Browse fragrances</a>
       </section>`;
     }
@@ -302,7 +302,7 @@ const Views = (() => {
           </fieldset>
           <fieldset>
             <legend>Payment</legend>
-            <p class="demo-note">🔒 Demo store — no real payment is taken. Try test card <b>4242 4242 4242 4242</b>, any future date, any CVC.</p>
+            <p class="demo-note">🔒 Demo store - no real payment is taken. Try test card <b>4242 4242 4242 4242</b>, any future date, any CVC.</p>
             ${field("card", "Card number", 'inputmode="numeric" placeholder="4242 4242 4242 4242" maxlength="23"')}
             ${field("cardName", "Name on card", 'autocomplete="cc-name"')}
             <div class="two">
@@ -364,7 +364,7 @@ const Views = (() => {
       </div>
       <div class="about-cols">
         <div><h3 class="display">Made in small batches</h3><p>Every fragrance is blended in limited runs so each bottle stays fresh and true to its formula.</p></div>
-        <div><h3 class="display">Natural-feeling notes</h3><p>We build around realistic citrus, salt, wood and resin accords — nothing loud, nothing synthetic-smelling.</p></div>
+        <div><h3 class="display">Natural-feeling notes</h3><p>We build around realistic citrus, salt, wood and resin accords - nothing loud, nothing synthetic-smelling.</p></div>
         <div><h3 class="display">A place in every scent</h3><p>From Capri's lemon terraces to the myrtle of Corsica, each perfume maps a stretch of Mediterranean coast.</p></div>
       </div>
       <a class="btn btn-primary" href="#/shop">Explore the collection</a>

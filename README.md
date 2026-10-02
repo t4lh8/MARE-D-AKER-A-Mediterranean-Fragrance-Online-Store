@@ -6,7 +6,7 @@
 ![No build step](https://img.shields.io/badge/build-none-2E7D5B)
 
 A fully functional **perfume e-commerce storefront** for a fictional Mediterranean
-fragrance brand — product catalogue, filtering and search, product pages, a cart, and
+fragrance brand - product catalogue, filtering and search, product pages, a cart, and
 a complete **checkout flow** with form and card validation. Built from scratch in
 **vanilla JavaScript** (no framework, no build step), so it runs anywhere you can host
 static files.
@@ -15,24 +15,24 @@ static files.
 
 ![Home](assets/home.png)
 
-> ⚠️ **Portfolio demo store — no real payment is processed.** The checkout accepts the
+> ⚠️ **Portfolio demo store - no real payment is processed.** The checkout accepts the
 > test card `4242 4242 4242 4242` and validates it client-side only.
 
 ## Features
 
-- **Product catalogue** — 12 fragrances, each with notes (top / heart / base), sizes and prices
-- **Shop page** — filter by fragrance family and audience, sort by price / popularity / name, and live search
-- **Product pages** — size selector, quantity, add-to-bag, fragrance notes and related scents
-- **Cart** — slide-in cart drawer + full cart page, quantity steppers, remove, live totals, free-shipping threshold
-- **Checkout** — contact, shipping and payment forms with inline validation (incl. a **Luhn card check** and expiry-date check), live order summary
-- **Order confirmation** — generated order number and estimated delivery
-- **Persistent cart** — survives reloads via `localStorage`
-- **Design** — Mediterranean theme with animated hero waves and **hand-built SVG bottle art** tinted per fragrance family (no image files needed)
+- **Product catalogue** - 12 fragrances, each with notes (top / heart / base), sizes and prices
+- **Shop page** - filter by fragrance family and audience, sort by price / popularity / name, and live search
+- **Product pages** - size selector, quantity, add-to-bag, fragrance notes and related scents
+- **Cart** - slide-in cart drawer + full cart page, quantity steppers, remove, live totals, free-shipping threshold
+- **Checkout** - contact, shipping and payment forms with inline validation (incl. a **Luhn card check** and expiry-date check), live order summary
+- **Order confirmation** - generated order number and estimated delivery
+- **Persistent cart** - survives reloads via `localStorage`
+- **Design** - Mediterranean theme with animated hero waves and **hand-built SVG bottle art** tinted per fragrance family (no image files needed)
 - **Responsive** and keyboard-accessible, with reduced-motion support
 
 ### Hand-built visuals
 
-Every bottle and every scene is **generated SVG** — no stock photos, no image files. The Mediterranean mood (a low sun and headlands behind the hero, plus lemon groves, cypress coast and golden hour) is drawn entirely in code.
+Every bottle and every scene is **generated SVG** - no stock photos, no image files. The Mediterranean mood (a low sun and headlands behind the hero, plus lemon groves, cypress coast and golden hour) is drawn entirely in code.
 
 ![Mediterranean scenes](assets/scenery.png)
 
@@ -47,8 +47,8 @@ Every bottle and every scene is **generated SVG** — no stock photos, no image 
 | **Frontend** | Vanilla JavaScript (ES2020), HTML5, CSS3 |
 | **Routing** | Hash-based single-page router (`#/shop`, `#/product/:id`, `#/checkout` …) |
 | **State** | Cart in `localStorage`, re-rendered via a small event bus (`cart:change`) |
-| **Art** | Inline SVG — bottles and hero waves generated in code |
-| **Hosting** | Static — no build, deploys straight to GitHub Pages |
+| **Art** | Inline SVG - bottles and hero waves generated in code |
+| **Hosting** | Static - no build, deploys straight to GitHub Pages |
 
 ## How it works
 
@@ -80,7 +80,7 @@ python -m http.server 8000     # http://localhost:8000
 
 ## What I learned
 
-- Structuring a **single-page app in vanilla JS** — a hash router, views and event delegation — without a framework
+- Structuring a **single-page app in vanilla JS** - a hash router, views and event delegation - without a framework
 - Modelling an **e-commerce cart** and a validated **checkout flow** (including the Luhn algorithm for card numbers)
 - Keeping UI in sync with a tiny **event-driven store** and `localStorage`
 - Building a whole product catalogue's imagery as **generated SVG**, so the site needs zero image assets
