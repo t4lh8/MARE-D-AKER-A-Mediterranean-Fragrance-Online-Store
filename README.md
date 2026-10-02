@@ -30,6 +30,12 @@ static files.
 - **Design** — Mediterranean theme with animated hero waves and **hand-built SVG bottle art** tinted per fragrance family (no image files needed)
 - **Responsive** and keyboard-accessible, with reduced-motion support
 
+### Hand-built visuals
+
+Every bottle and every scene is **generated SVG** — no stock photos, no image files. The Mediterranean mood (a low sun and headlands behind the hero, plus lemon groves, cypress coast and golden hour) is drawn entirely in code.
+
+![Mediterranean scenes](assets/scenery.png)
+
 | Product page | Checkout |
 |---|---|
 | ![Product](assets/product.png) | ![Checkout](assets/checkout.png) |
