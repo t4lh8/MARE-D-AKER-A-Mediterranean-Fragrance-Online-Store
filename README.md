@@ -11,7 +11,7 @@ a complete **checkout flow** with form and card validation. Built from scratch i
 **vanilla JavaScript** (no framework, no build step), so it runs anywhere you can host
 static files.
 
-**🛍️ Live demo:** https://t4lh8.github.io/MARE-D-AKER---A-Mediterranean-Fragrance-Universe/
+**🛍️ Live demo:** https://t4lh8.github.io/MARE-D-AKER-A-Mediterranean-Fragrance-Online-Store/
 
 ![Home](assets/home.png)
 
@@ -66,8 +66,8 @@ check on the card number, and an expiry-date-in-the-future check) before creatin
 No install or build needed:
 
 ```bash
-git clone https://github.com/t4lh8/MARE-D-AKER---A-Mediterranean-Fragrance-Universe.git
-cd MARE-D-AKER---A-Mediterranean-Fragrance-Universe
+git clone https://github.com/t4lh8/MARE-D-AKER-A-Mediterranean-Fragrance-Online-Store.git
+cd MARE-D-AKER-A-Mediterranean-Fragrance-Online-Store
 # then open index.html, or serve it:
 python -m http.server 8000     # http://localhost:8000
 ```
