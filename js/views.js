@@ -32,6 +32,7 @@ const Views = (() => {
     const featured = PRODUCTS.filter((p) => p.featured).slice(0, 4);
     return `
     <section class="hero">
+      ${Art.heroScene()}
       <div class="hero-inner">
         <p class="eyebrow">Eau de Parfum · Made in small batches</p>
         <h1 class="display">${esc(BRAND.name)}</h1>
@@ -61,6 +62,15 @@ const Views = (() => {
           <p>${esc(c.copy)}</p>
           <span class="link-light">Shop →</span>
         </a>`).join("")}
+    </section>
+
+    <section class="scenery">
+      <div class="section-head center"><p class="eyebrow">The Mediterranean, bottled</p><h2 class="display">Scenes behind the scents</h2></div>
+      <div class="scene-grid">
+        <a class="scene-tile" href="#/shop?family=citrus">${Art.scene("lemons")}<div class="scene-cap"><h3 class="display">Lemon groves</h3><p>Capri &amp; the Amalfi coast</p></div></a>
+        <a class="scene-tile" href="#/shop?family=aromatic">${Art.scene("cypress")}<div class="scene-cap"><h3 class="display">Cypress coast</h3><p>Tuscany &amp; Corsica</p></div></a>
+        <a class="scene-tile" href="#/shop?family=amber">${Art.scene("goldenhour")}<div class="scene-cap"><h3 class="display">Golden hour</h3><p>Ibiza &amp; the open sea</p></div></a>
+      </div>
     </section>
 
     <section class="section story-band">
