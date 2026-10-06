@@ -21,26 +21,24 @@ static files.
 
 ## Features
 
-- **Product catalogue** - 12 fragrances, each with notes (top / heart / base), sizes and prices
+- **Product catalogue** - the *Winds of the Mediterranean* collection: 6 fragrances, each with real product photography, notes (top / heart / base), sizes and prices
 - **Shop page** - filter by fragrance family and audience, sort by price / popularity / name, and live search
 - **Product pages** - size selector, quantity, add-to-bag, fragrance notes and related scents
 - **Cart** - slide-in cart drawer + full cart page, quantity steppers, remove, live totals, free-shipping threshold
 - **Checkout** - contact, shipping and payment forms with inline validation (incl. a **Luhn card check** and expiry-date check), live order summary
 - **Order confirmation** - generated order number and estimated delivery
 - **Persistent cart** - survives reloads via `localStorage`
-- **Design** - Mediterranean theme with animated hero waves and **hand-built SVG bottle art** tinted per fragrance family (no image files needed)
+- **Design** - Mediterranean theme with real brand photography for the products, an interactive **coast map** of the collection, and SVG accents (animated hero waves)
 - **Responsive** and keyboard-accessible, with reduced-motion support
 
 ### Visuals
 
-Two layers work together:
-
-- **Product bottles are generated SVG** - each bottle is drawn in code and tinted by its
-  fragrance family, so the catalogue needs no per-product image files.
-- **Brand photography** - a cohesive set of Mediterranean brand images (hero, a
-  destinations gallery and a journal section) gives the storefront a real editorial feel.
+- **Brand photography** - each fragrance has its own product shot set on a different
+  Mediterranean coast, and the hero, journal and story sections share the same look.
   The raw exports are large, so a small **Python pipeline** turns them into web-ready
   assets (see [Image pipeline](#image-pipeline)).
+- **SVG accents** - the animated hero waves and small UI marks are drawn in code, and a
+  **coast map** on the home page plots the six fragrances west to east.
 
 ![Mediterranean scenes](assets/scenery.png)
 
@@ -112,7 +110,7 @@ python -m http.server 8000     # http://localhost:8000
 - Structuring a **single-page app in vanilla JS** - a hash router, views and event delegation - without a framework
 - Modelling an **e-commerce cart** and a validated **checkout flow** (including the Luhn algorithm for card numbers)
 - Keeping UI in sync with a tiny **event-driven store** and `localStorage`
-- Building a whole product catalogue's imagery as **generated SVG**, so the catalogue needs zero image files
+- Presenting a product catalogue with **real photography**, served responsively with `<picture>` (WebP + JPEG) and lazy loading
 - Writing a small **Python (Pillow) build pipeline** to optimise brand imagery into WebP + JPEG, and serving it with responsive `<picture>` and lazy loading
 - Designing a cohesive, responsive brand with an accessible, reduced-motion-friendly layout
 

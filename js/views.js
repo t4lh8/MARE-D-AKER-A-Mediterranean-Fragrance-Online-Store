@@ -17,15 +17,7 @@ const Views = (() => {
       <img src="${IMG}/${name}.jpg" alt="${esc(alt)}"${lazy ? ' loading="lazy"' : ' fetchpriority="high"'} decoding="async">
     </picture>`;
 
-  /* Destinations and journal entries shown on the home page. */
-  const DESTINATIONS = [
-    { img: "destination-greece", place: "Greece", note: "The Aegean & Santorini" },
-    { img: "destination-italy", place: "Italy", note: "Capri & the Amalfi coast" },
-    { img: "destination-turkey", place: "Turkey", note: "Bodrum & the blue coast" },
-    { img: "destination-spain", place: "Spain", note: "The Balearic shore" },
-    { img: "destination-malta", place: "Malta", note: "Valletta's limestone" },
-    { img: "destination-morocco", place: "Morocco", note: "Sirocco winds" },
-  ];
+  /* Journal cards shown on the home page. */
   const JOURNAL = [
     { img: "journal-aegean", alt: "Journal: The Endless Blue - light, salt and timeless horizons over the Aegean" },
     { img: "journal-citrus", alt: "Journal: a feature on Mediterranean citrus groves" },
@@ -37,7 +29,7 @@ const Views = (() => {
   function card(p) {
     return `
     <article class="card" data-action="nav" data-href="#/product/${p.id}" tabindex="0" role="link" aria-label="${esc(p.name)}">
-      <div class="card-art">${Art.bottle(p, { w: 150, h: 225 })}</div>
+      <div class="card-art">${pic(p.image, p.name + " extrait de parfum, " + p.place)}</div>
       <div class="card-body">
         <div class="card-top">${chip(p)}<span class="card-place">${esc(p.place)}</span></div>
         <h3>${esc(p.name)}</h3>
@@ -50,9 +42,34 @@ const Views = (() => {
     </article>`;
   }
 
+  /* A stylised "coast route": the six fragrances, west to east. */
+  function coastMap() {
+    const stops = [...PRODUCTS].sort((a, b) => a.map - b.map);
+    const star = `<svg viewBox="0 0 16 16" width="15" height="15" aria-hidden="true"><path d="M8 0l1.7 6.3L16 8l-6.3 1.7L8 16l-1.7-6.3L0 8l6.3-1.7z" fill="currentColor"/></svg>`;
+    return `
+    <section class="section coastmap">
+      <div class="section-head center">
+        <p class="eyebrow">Where the scents come from</p>
+        <h2 class="display">Follow the coast</h2>
+        <p class="section-sub">Six winds, west to east across the Mediterranean - tap a port to meet its fragrance.</p>
+      </div>
+      <div class="map-wrap">
+        <div class="map-rail" aria-hidden="true"></div>
+        <div class="map-stops">
+          ${stops.map((p) => `
+            <a class="map-stop coll-${p.family}" href="#/product/${p.id}" aria-label="${esc(p.name)} - ${esc(p.place)}">
+              <span class="stop-dot">${star}</span>
+              <span class="stop-name">${esc(p.name)}</span>
+              <span class="stop-place">${esc(p.place)}</span>
+            </a>`).join("")}
+        </div>
+      </div>
+    </section>`;
+  }
+
   /* ---------------- Home ---------------- */
   function home() {
-    const featured = PRODUCTS.filter((p) => p.featured).slice(0, 4);
+    const featured = [...PRODUCTS].sort((a, b) => b.popularity - a.popularity);
     return `
     <section class="hero">
       <picture class="hero-photo">
@@ -92,28 +109,7 @@ const Views = (() => {
         </a>`).join("")}
     </section>
 
-    <section class="section destinations">
-      <div class="section-head center">
-        <p class="eyebrow">Where the scents come from</p>
-        <h2 class="display">A journey along the coast</h2>
-      </div>
-      <div class="dest-grid">
-        ${DESTINATIONS.map((d) => `
-          <a class="dest-tile" href="#/shop" aria-label="${esc(d.place)} - ${esc(d.note)}">
-            ${pic(d.img, d.place + " - " + d.note)}
-            <div class="dest-cap"><h3 class="display">${esc(d.place)}</h3><p>${esc(d.note)}</p></div>
-          </a>`).join("")}
-      </div>
-    </section>
-
-    <section class="scenery">
-      <div class="section-head center"><p class="eyebrow">The Mediterranean, bottled</p><h2 class="display">Scenes behind the scents</h2></div>
-      <div class="scene-grid">
-        <a class="scene-tile" href="#/shop?family=citrus">${Art.scene("lemons")}<div class="scene-cap"><h3 class="display">Lemon groves</h3><p>Capri &amp; the Amalfi coast</p></div></a>
-        <a class="scene-tile" href="#/shop?family=aromatic">${Art.scene("cypress")}<div class="scene-cap"><h3 class="display">Cypress coast</h3><p>Tuscany &amp; Corsica</p></div></a>
-        <a class="scene-tile" href="#/shop?family=amber">${Art.scene("goldenhour")}<div class="scene-cap"><h3 class="display">Golden hour</h3><p>Ibiza &amp; the open sea</p></div></a>
-      </div>
-    </section>
+    ${coastMap()}
 
     <section class="section journal">
       <div class="section-head center">
@@ -232,7 +228,7 @@ const Views = (() => {
     return `
     <nav class="crumbs"><a href="#/">Home</a> / <a href="#/shop">Shop</a> / <span>${esc(p.name)}</span></nav>
     <section class="product" data-product="${p.id}">
-      <div class="product-art">${Art.bottle(p, { w: 320, h: 480 })}</div>
+      <div class="product-art">${pic(p.image, p.name + " extrait de parfum, inspired by " + p.place, "", false)}</div>
       <div class="product-info">
         <div class="product-top">${chip(p)}<span class="muted">${GENDERS[p.gender]} · ${esc(p.concentration)}</span></div>
         <h1 class="display">${esc(p.name)}</h1>
@@ -293,7 +289,7 @@ const Views = (() => {
         <div class="cart-lines">
           ${lines.map((l) => `
             <div class="cart-line">
-              <a class="cart-thumb" href="#/product/${l.id}">${Art.bottle(l.product, { w: 72, h: 108, monogram: false })}</a>
+              <a class="cart-thumb" href="#/product/${l.id}">${pic(l.product.image, l.product.name)}</a>
               <div class="cart-line-main">
                 <a class="cart-name" href="#/product/${l.id}">${esc(l.product.name)}</a>
                 <p class="muted">${l.ml} ml · ${FAMILIES[l.product.family].label}</p>
