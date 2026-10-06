@@ -40,11 +40,23 @@ static files.
 - **SVG accents** - the animated hero waves and small UI marks are drawn in code, and a
   **coast map** on the home page plots the six fragrances west to east.
 
-![Mediterranean scenes](assets/scenery.png)
+### Two themes - Daylight and a shimmering Midnight
 
-| Product page | Checkout |
+Switch themes from the header. **Midnight** is a black, gold-shimmer Mediterranean look.
+
+| Daylight | Midnight |
 |---|---|
-| ![Product](assets/product.png) | ![Checkout](assets/checkout.png) |
+| ![Daylight theme](assets/home.png) | ![Midnight theme](assets/home-midnight.png) |
+
+### Follow the coast
+
+An interactive map plots the six fragrances from Spain to Turkey.
+
+![Coast map - Midnight theme](assets/map-midnight.png)
+
+| Product page | Checkout | Mobile |
+|---|---|---|
+| ![Product page](assets/product.png) | ![Checkout](assets/checkout.png) | ![Mobile](assets/mobile.png) |
 
 ## Tech
 

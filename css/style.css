@@ -402,3 +402,63 @@ section{scroll-margin-top:90px}
   .map-pin-dot{width:11px;height:11px}
   .map-legend a{padding:6px 11px}
 }
+
+/* ===================================================================
+   Theme switcher + Midnight (black & shimmer) theme
+=================================================================== */
+.theme-switch{display:inline-flex;border:1px solid var(--line-2);border-radius:999px;overflow:hidden;margin-left:14px}
+.theme-switch button{background:none;border:0;cursor:pointer;font-size:.9rem;line-height:1;
+  padding:7px 11px;color:var(--muted);transition:.2s}
+.theme-switch button:hover{color:var(--ink)}
+.theme-switch button[aria-pressed="true"]{background:var(--gold);color:#10151d}
+
+/* ---- Midnight theme tokens ---- */
+html[data-theme="midnight"]{
+  --sea-deep:#0C1017; --sea:#24404f; --foam:#121a24;
+  --sand:#121a24; --ivory:#090C12; --paper:#121a24;
+  --gold:#ECC978; --gold-dk:#D8B45C;
+  --ink:#F4ECDD; --muted:#A6B3BC; --line:rgba(236,201,120,.16); --line-2:rgba(236,201,120,.34);
+  --shadow:0 22px 55px rgba(0,0,0,.6);
+}
+html[data-theme="midnight"] body{
+  background:
+    radial-gradient(1100px 600px at 80% -5%, rgba(236,201,120,.10), transparent 60%),
+    radial-gradient(900px 500px at 0% 15%, rgba(79,163,194,.10), transparent 55%),
+    #090C12;
+}
+html[data-theme="midnight"] .site-header{background:rgba(9,12,18,.82);border-bottom-color:var(--line)}
+html[data-theme="midnight"] .header-banner{background:#0C1017;color:var(--gold);border-bottom:1px solid var(--line)}
+html[data-theme="midnight"] .cart-btn{color:var(--ink)}
+html[data-theme="midnight"] .logo-text small{color:var(--muted)}
+
+/* dark surfaces for form controls that were hard-white */
+html[data-theme="midnight"] .size,
+html[data-theme="midnight"] .field input,
+html[data-theme="midnight"] .shop-search input,
+html[data-theme="midnight"] .filters select,
+html[data-theme="midnight"] .size.active{background:#0E141D;color:var(--ink);border-color:var(--line-2)}
+html[data-theme="midnight"] .card-art{background:#0E141D}
+html[data-theme="midnight"] .btn-ghost{color:var(--gold);border-color:var(--line-2)}
+html[data-theme="midnight"] .btn-ghost:hover{background:rgba(236,201,120,.08);border-color:var(--gold)}
+html[data-theme="midnight"] .map-pin-label{background:rgba(18,26,36,.96);border-color:var(--line-2)}
+html[data-theme="midnight"] .map-pin-label strong{color:var(--gold)}
+html[data-theme="midnight"] .map-legend a,
+html[data-theme="midnight"] .journal-card{background:var(--paper)}
+
+/* gold shimmer button */
+html[data-theme="midnight"] .btn-primary{
+  background:linear-gradient(100deg,#D8B45C 0%,#F7E6B0 28%,#C9A24B 52%,#F2DC98 76%,#D8B45C 100%);
+  background-size:220% auto;color:#0C1017;animation:btn-shimmer 7s linear infinite}
+html[data-theme="midnight"] .btn-primary:hover{color:#0C1017;filter:brightness(1.05)}
+@keyframes btn-shimmer{to{background-position:220% center}}
+
+/* shimmering gold display headings in the dark theme */
+html[data-theme="midnight"] .hero h1,
+html[data-theme="midnight"] .section-head .display{
+  background:linear-gradient(100deg,#E9C777 0%,#FFF6DC 22%,#C9A24B 44%,#F2DC98 68%,#E9C777 100%);
+  background-size:220% auto;-webkit-background-clip:text;background-clip:text;color:transparent;
+  animation:text-shimmer 8s linear infinite}
+@keyframes text-shimmer{to{background-position:220% center}}
+@media (prefers-reduced-motion:reduce){
+  .btn-primary,[data-theme="midnight"] .hero h1,[data-theme="midnight"] .section-head .display{animation:none}
+}

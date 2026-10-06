@@ -6,6 +6,7 @@
 <title>MARE D'AKER · A Mediterranean Fragrance Universe</title>
 <meta name="description" content="MARE D'AKER - niche Mediterranean perfumes. Salt, citrus, cypress and amber, composed in small batches. (Portfolio demo store.)">
 <meta name="theme-color" content="#0E3A4F">
+<script>try{var t=localStorage.getItem("mare_theme");if(t)document.documentElement.setAttribute("data-theme",t);}catch(e){}</script>
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
 <meta property="og:title" content="MARE D'AKER · A Mediterranean Fragrance Universe">
 <meta property="og:description" content="Niche Mediterranean perfumes - salt, citrus, cypress and amber, in small batches. Portfolio demo store.">
@@ -30,6 +31,10 @@
       <a href="#/shop?family=citrus">Citrus</a>
       <a href="#/about">Story</a>
     </nav>
+    <div class="theme-switch" role="group" aria-label="Choose theme">
+      <button type="button" data-theme-set="light" aria-label="Daylight theme" title="Daylight">☀</button>
+      <button type="button" data-theme-set="midnight" aria-label="Midnight theme" title="Midnight">✦</button>
+    </div>
     <button id="cart-btn" class="cart-btn" aria-label="Open bag">
       <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 8h12l-1 12H7L6 8z"/><path d="M9 8a3 3 0 0 1 6 0"/></svg>
       <span id="cart-count" class="cart-count" aria-live="polite">0</span>

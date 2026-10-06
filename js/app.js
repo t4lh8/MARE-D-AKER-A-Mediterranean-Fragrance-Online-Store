@@ -81,6 +81,19 @@ function drawerHTML() {
 function openDrawer() { document.body.classList.add("drawer-open"); }
 function closeDrawer() { document.body.classList.remove("drawer-open"); }
 
+/* ---------- theme switcher ---------- */
+function setTheme(name) {
+  if (name === "light") document.documentElement.removeAttribute("data-theme");
+  else document.documentElement.setAttribute("data-theme", name);
+  try { localStorage.setItem("mare_theme", name); } catch (e) {}
+  markTheme();
+}
+function markTheme() {
+  const cur = document.documentElement.getAttribute("data-theme") || "light";
+  document.querySelectorAll("[data-theme-set]").forEach((b) =>
+    b.setAttribute("aria-pressed", String(b.dataset.themeSet === cur)));
+}
+
 function flashBadge() {
   const b = $("#cart-count");
   if (!b) return;
@@ -100,6 +113,8 @@ function setQuery(patch) {
 document.addEventListener("click", (e) => {
   const t = e.target.closest("[data-action]");
   // cart drawer open/close buttons live outside [data-action] routing
+  const themeBtn = e.target.closest("[data-theme-set]");
+  if (themeBtn) { setTheme(themeBtn.dataset.themeSet); return; }
   if (e.target.closest("#cart-btn")) { e.preventDefault(); openDrawer(); return; }
   if (e.target.closest("#drawer-close") || e.target.id === "drawer-scrim") { closeDrawer(); return; }
   if (!t) return;
@@ -245,3 +260,4 @@ function placeOrder(form) {
 window.addEventListener("hashchange", render);
 window.addEventListener("cart:change", updateChrome);
 render();
+markTheme();
