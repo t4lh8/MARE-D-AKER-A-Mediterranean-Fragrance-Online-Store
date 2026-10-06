@@ -4,6 +4,7 @@
 ![CSS3](https://img.shields.io/badge/CSS3-1572B6?logo=css3&logoColor=white)
 ![JavaScript](https://img.shields.io/badge/JavaScript-Vanilla-F7DF1E?logo=javascript&logoColor=black)
 ![No build step](https://img.shields.io/badge/build-none-2E7D5B)
+![Python](https://img.shields.io/badge/tooling-Python%20%2B%20Pillow-3776AB?logo=python&logoColor=white)
 
 A fully functional **perfume e-commerce storefront** for a fictional Mediterranean
 fragrance brand - product catalogue, filtering and search, product pages, a cart, and
@@ -30,9 +31,16 @@ static files.
 - **Design** - Mediterranean theme with animated hero waves and **hand-built SVG bottle art** tinted per fragrance family (no image files needed)
 - **Responsive** and keyboard-accessible, with reduced-motion support
 
-### Hand-built visuals
+### Visuals
 
-Every bottle and every scene is **generated SVG** - no stock photos, no image files. The Mediterranean mood (a low sun and headlands behind the hero, plus lemon groves, cypress coast and golden hour) is drawn entirely in code.
+Two layers work together:
+
+- **Product bottles are generated SVG** - each bottle is drawn in code and tinted by its
+  fragrance family, so the catalogue needs no per-product image files.
+- **Brand photography** - a cohesive set of Mediterranean brand images (hero, a
+  destinations gallery and a journal section) gives the storefront a real editorial feel.
+  The raw exports are large, so a small **Python pipeline** turns them into web-ready
+  assets (see [Image pipeline](#image-pipeline)).
 
 ![Mediterranean scenes](assets/scenery.png)
 
@@ -48,6 +56,7 @@ Every bottle and every scene is **generated SVG** - no stock photos, no image fi
 | **Routing** | Hash-based single-page router (`#/shop`, `#/product/:id`, `#/checkout` …) |
 | **State** | Cart in `localStorage`, re-rendered via a small event bus (`cart:change`) |
 | **Art** | Inline SVG - bottles and hero waves generated in code |
+| **Image tooling** | Python + Pillow pipeline that resizes and compresses brand imagery to WebP + JPEG |
 | **Hosting** | Static - no build, deploys straight to GitHub Pages |
 
 ## How it works
@@ -60,7 +69,27 @@ js/art.js          SVG bottle + hero-wave generators
 js/store.js        cart state, localStorage, price helpers
 js/views.js        one render function per page
 js/app.js          hash router + all interactions (event delegation) + checkout validation
+assets/images/     web-ready brand imagery (built by the pipeline) + manifest.json
+tools/             Python image pipeline (optimize_images.py)
 ```
+
+## Image pipeline
+
+The brand imagery arrives as large (2-3 MB) PNG exports. `tools/optimize_images.py`
+(Python + Pillow) turns them into clean web assets: it resizes each image for its role,
+writes a modern **WebP** plus a **JPEG** fallback, renames everything to a predictable
+scheme, builds a square favicon from the logo, and writes `assets/images/manifest.json`.
+It cut the imagery from ~40 MB of source PNGs to under 2 MB of WebP.
+
+```bash
+pip install pillow
+# drop the raw brand PNGs in tools/source-images/, then:
+python tools/optimize_images.py
+```
+
+Only the optimized output is committed; the heavy source PNGs stay out of version control.
+The page serves each image through a `<picture>` element (WebP with a JPEG fallback) and
+lazy-loads everything below the hero.
 
 The cart never blocks the UI: adding an item updates `localStorage` and fires a
 `cart:change` event, and the header badge, drawer and cart page re-read from the store.
@@ -83,7 +112,8 @@ python -m http.server 8000     # http://localhost:8000
 - Structuring a **single-page app in vanilla JS** - a hash router, views and event delegation - without a framework
 - Modelling an **e-commerce cart** and a validated **checkout flow** (including the Luhn algorithm for card numbers)
 - Keeping UI in sync with a tiny **event-driven store** and `localStorage`
-- Building a whole product catalogue's imagery as **generated SVG**, so the site needs zero image assets
+- Building a whole product catalogue's imagery as **generated SVG**, so the catalogue needs zero image files
+- Writing a small **Python (Pillow) build pipeline** to optimise brand imagery into WebP + JPEG, and serving it with responsive `<picture>` and lazy loading
 - Designing a cohesive, responsive brand with an accessible, reduced-motion-friendly layout
 
 ## License

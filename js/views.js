@@ -9,6 +9,29 @@ const esc = (s) => String(s).replace(/[&<>"']/g, (c) =>
 const Views = (() => {
   const fromPrice = (p) => Math.min(...p.sizes.map((s) => s.price));
 
+  /* Responsive <picture>: modern WebP with a JPEG fallback. */
+  const IMG = "assets/images";
+  const pic = (name, alt, cls = "", lazy = true) => `
+    <picture class="${cls}">
+      <source srcset="${IMG}/${name}.webp" type="image/webp">
+      <img src="${IMG}/${name}.jpg" alt="${esc(alt)}"${lazy ? ' loading="lazy"' : ' fetchpriority="high"'} decoding="async">
+    </picture>`;
+
+  /* Destinations and journal entries shown on the home page. */
+  const DESTINATIONS = [
+    { img: "destination-greece", place: "Greece", note: "The Aegean & Santorini" },
+    { img: "destination-italy", place: "Italy", note: "Capri & the Amalfi coast" },
+    { img: "destination-turkey", place: "Turkey", note: "Bodrum & the blue coast" },
+    { img: "destination-spain", place: "Spain", note: "The Balearic shore" },
+    { img: "destination-malta", place: "Malta", note: "Valletta's limestone" },
+    { img: "destination-morocco", place: "Morocco", note: "Sirocco winds" },
+  ];
+  const JOURNAL = [
+    { img: "journal-aegean", alt: "Journal: The Endless Blue - light, salt and timeless horizons over the Aegean" },
+    { img: "journal-citrus", alt: "Journal: a feature on Mediterranean citrus groves" },
+    { img: "journal-valletta", alt: "Journal: a feature on Valletta and the limestone coast" },
+  ];
+
   const chip = (p) => `<span class="chip chip-${p.family}">${FAMILIES[p.family].label}</span>`;
 
   function card(p) {
@@ -32,7 +55,12 @@ const Views = (() => {
     const featured = PRODUCTS.filter((p) => p.featured).slice(0, 4);
     return `
     <section class="hero">
-      ${Art.heroScene()}
+      <picture class="hero-photo">
+        <source media="(max-width:640px)" srcset="${IMG}/hero-mobile.webp" type="image/webp">
+        <source media="(max-width:640px)" srcset="${IMG}/hero-mobile.jpg">
+        <source srcset="${IMG}/hero-desktop.webp" type="image/webp">
+        <img src="${IMG}/hero-desktop.jpg" alt="MARE D'AKER Mediterranean Collection bottle on a Santorini terrace above the sea" fetchpriority="high" decoding="async">
+      </picture>
       <div class="hero-inner">
         <p class="eyebrow">Eau de Parfum · Made in small batches</p>
         <h1 class="display">${esc(BRAND.name)}</h1>
@@ -64,12 +92,39 @@ const Views = (() => {
         </a>`).join("")}
     </section>
 
+    <section class="section destinations">
+      <div class="section-head center">
+        <p class="eyebrow">Where the scents come from</p>
+        <h2 class="display">A journey along the coast</h2>
+      </div>
+      <div class="dest-grid">
+        ${DESTINATIONS.map((d) => `
+          <a class="dest-tile" href="#/shop" aria-label="${esc(d.place)} - ${esc(d.note)}">
+            ${pic(d.img, d.place + " - " + d.note)}
+            <div class="dest-cap"><h3 class="display">${esc(d.place)}</h3><p>${esc(d.note)}</p></div>
+          </a>`).join("")}
+      </div>
+    </section>
+
     <section class="scenery">
       <div class="section-head center"><p class="eyebrow">The Mediterranean, bottled</p><h2 class="display">Scenes behind the scents</h2></div>
       <div class="scene-grid">
         <a class="scene-tile" href="#/shop?family=citrus">${Art.scene("lemons")}<div class="scene-cap"><h3 class="display">Lemon groves</h3><p>Capri &amp; the Amalfi coast</p></div></a>
         <a class="scene-tile" href="#/shop?family=aromatic">${Art.scene("cypress")}<div class="scene-cap"><h3 class="display">Cypress coast</h3><p>Tuscany &amp; Corsica</p></div></a>
         <a class="scene-tile" href="#/shop?family=amber">${Art.scene("goldenhour")}<div class="scene-cap"><h3 class="display">Golden hour</h3><p>Ibiza &amp; the open sea</p></div></a>
+      </div>
+    </section>
+
+    <section class="section journal">
+      <div class="section-head center">
+        <p class="eyebrow">From the journal</p>
+        <h2 class="display">Notes from the Mediterranean</h2>
+      </div>
+      <div class="journal-grid">
+        ${JOURNAL.map((j) => `
+          <a class="journal-card" href="#/about" aria-label="${esc(j.alt)}">
+            ${pic(j.img, j.alt)}
+          </a>`).join("")}
       </div>
     </section>
 
@@ -361,6 +416,18 @@ const Views = (() => {
         <p class="eyebrow">The house</p>
         <h1 class="display">${esc(BRAND.name)}</h1>
         <p class="about-lede">${esc(BRAND.story)}</p>
+      </div>
+      <div class="about-feature">
+        ${pic("story-flatlay", "MARE D'AKER bottle styled on linen with olive branches and sea salt", "about-figure")}
+        <div class="about-feature-text">
+          <p class="eyebrow">A journey, a memory</p>
+          <h2 class="display">A scent of the Mediterranean</h2>
+          <p>Each fragrance is composed in small batches and presented as a keepsake - a navy case, a gold mark and a card that names the coast it was drawn from.</p>
+        </div>
+      </div>
+      <div class="about-gallery">
+        ${pic("packaging-box", "MARE D'AKER gift box, open, with the Morocco Sirocco bottle")}
+        ${pic("story-postcards", "MARE D'AKER postcards and bottles laid out on stone")}
       </div>
       <div class="about-cols">
         <div><h3 class="display">Made in small batches</h3><p>Every fragrance is blended in limited runs so each bottle stays fresh and true to its formula.</p></div>

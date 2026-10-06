@@ -1,0 +1,3 @@
+# Raw brand source images are not committed - run tools/optimize_images.py to build assets.
+*
+!.gitignore
