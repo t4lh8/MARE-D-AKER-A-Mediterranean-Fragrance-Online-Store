@@ -42,28 +42,43 @@ const Views = (() => {
     </article>`;
   }
 
-  /* A stylised "coast route": the six fragrances, west to east. */
+  /* The six fragrances pinned on a vintage map of the Mediterranean,
+     joined west to east by a dotted route. */
   function coastMap() {
-    const stops = [...PRODUCTS].sort((a, b) => a.map - b.map);
-    const star = `<svg viewBox="0 0 16 16" width="15" height="15" aria-hidden="true"><path d="M8 0l1.7 6.3L16 8l-6.3 1.7L8 16l-1.7-6.3L0 8l6.3-1.7z" fill="currentColor"/></svg>`;
+    // West to east along the coast: Spain, Morocco, Italy, Malta, Greece, Turkey.
+    const order = ["solano", "sirocco", "zagara", "valletta", "meltemi", "bodrum"];
+    const stops = order.map((id) => PRODUCTS.find((p) => p.id === id)).filter(Boolean);
+    const route = stops.map((p, i) => `${i ? "L" : "M"}${p.mapx} ${p.mapy}`).join(" ");
     return `
     <section class="section coastmap">
       <div class="section-head center">
         <p class="eyebrow">Where the scents come from</p>
         <h2 class="display">Follow the coast</h2>
-        <p class="section-sub">Six winds, west to east across the Mediterranean - tap a port to meet its fragrance.</p>
+        <p class="section-sub">Six winds across the Mediterranean, from the Spanish shore to the Turkish coast - tap a port to meet its fragrance.</p>
       </div>
-      <div class="map-wrap">
-        <div class="map-rail" aria-hidden="true"></div>
-        <div class="map-stops">
-          ${stops.map((p) => `
-            <a class="map-stop coll-${p.family}" href="#/product/${p.id}" aria-label="${esc(p.name)} - ${esc(p.place)}">
-              <span class="stop-dot">${star}</span>
-              <span class="stop-name">${esc(p.name)}</span>
-              <span class="stop-place">${esc(p.place)}</span>
-            </a>`).join("")}
-        </div>
-      </div>
+      <figure class="map-figure">
+        <picture class="map-bg">
+          <source srcset="${IMG}/map-mediterranean.webp" type="image/webp">
+          <img src="${IMG}/map-mediterranean.jpg" alt="Vintage map of the Mediterranean with the MARE D'AKER fragrance ports marked" loading="lazy" decoding="async">
+        </picture>
+        <svg class="map-route" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+          <path d="${route}" fill="none" stroke="#6F5236" stroke-width="0.5"
+            stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="0.4 2.4" opacity=".75"/>
+        </svg>
+        ${stops.map((p) => `
+          <a class="map-pin" style="left:${p.mapx}%;top:${p.mapy}%" href="#/product/${p.id}"
+             aria-label="${esc(p.name)} - ${esc(p.place)}">
+            <span class="map-pin-dot"></span>
+            <span class="map-pin-label"><strong>${esc(p.name)}</strong><small>${esc(p.place)}</small></span>
+          </a>`).join("")}
+      </figure>
+      <ol class="map-legend">
+        ${stops.map((p) => `
+          <li><a href="#/product/${p.id}">
+            <span class="dot" style="background:${FAMILIES[p.family].deep}"></span>
+            <span class="lg-name">${esc(p.name)}</span> <small>${esc(p.place)}</small>
+          </a></li>`).join("")}
+      </ol>
     </section>`;
   }
 

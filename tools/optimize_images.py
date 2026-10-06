@@ -47,7 +47,11 @@ SPEC = {
     "mare-daker-postcards.webp.png":      ("story-postcards", "story", 1400),
     "story-flatlay.webp.png":             ("story-flatlay", "story", 900),
     "logo.png":                           ("logo", "brand", 600),
+    "mediterranean-map-texture.webp.png": ("map-mediterranean", "map", 1600),
 }
+
+# Crop box for the brand emblem (fraction of the square logo): left, top, right, bottom.
+EMBLEM_BOX = (0.26, 0.19, 0.74, 0.67)
 
 JPEG_QUALITY = 82
 WEBP_QUALITY = 80
@@ -129,6 +133,17 @@ def main() -> None:
         fav_path = OUT_DIR / "favicon.png"
         fav.save(fav_path, "PNG", optimize=True)
         print(f"  {'favicon':22} {FAVICON_SIZE}x{FAVICON_SIZE}  png {kb(fav_path):>4} KB")
+
+        # Brand emblem (star + arch + waves) for the small header/footer mark.
+        lw, lh = logo.size
+        box = (int(lw * EMBLEM_BOX[0]), int(lh * EMBLEM_BOX[1]),
+               int(lw * EMBLEM_BOX[2]), int(lh * EMBLEM_BOX[3]))
+        mark = logo.crop(box).resize((220, 220), Image.LANCZOS)
+        mark_png = OUT_DIR / "logo-mark.png"
+        mark_webp = OUT_DIR / "logo-mark.webp"
+        mark.save(mark_png, "PNG", optimize=True)
+        mark.save(mark_webp, "WEBP", quality=90, method=6)
+        print(f"  {'logo-mark':22} 220x220  png {kb(mark_png):>4} KB")
 
     (OUT_DIR / "manifest.json").write_text(
         json.dumps(sorted(manifest, key=lambda m: (m["role"], m["name"])), indent=2),

@@ -35,11 +35,11 @@ const FAMILIES = {
 const GENDERS = { unisex: "Unisex", him: "For Him", her: "For Her" };
 
 /* Each product's `image` is a basename in assets/images (served as .webp/.jpg).
-   `map` is the pin position on the home "coast" map, west (0) to east (100). */
+   `mapx`/`mapy` are the pin position (percent) on the home Mediterranean map. */
 const PRODUCTS = [
   {
     id: "meltemi", name: "Meltemi", place: "Santorini, Greece",
-    image: "destination-greece", map: 78,
+    image: "destination-greece", mapx: 67, mapy: 53,
     family: "marine", gender: "unisex", concentration: "Extrait de Parfum",
     popularity: 98, featured: true,
     tagline: "Azure air, bergamot and a cool Aegean horizon.",
@@ -51,7 +51,7 @@ const PRODUCTS = [
   },
   {
     id: "zagara", name: "Zagara", place: "Capri, Italy",
-    image: "destination-italy", map: 46,
+    image: "destination-italy", mapx: 44, mapy: 33,
     family: "citrus", gender: "unisex", concentration: "Extrait de Parfum",
     popularity: 95, featured: true,
     tagline: "Sun-warmed lemon blossom on a Capri terrace.",
@@ -63,7 +63,7 @@ const PRODUCTS = [
   },
   {
     id: "sirocco", name: "Sirocco", place: "Morocco",
-    image: "destination-morocco", map: 20,
+    image: "destination-morocco", mapx: 10, mapy: 57,
     family: "amber", gender: "unisex", concentration: "Extrait de Parfum",
     popularity: 93, featured: true,
     tagline: "Warm amber carried on a desert wind.",
@@ -75,7 +75,7 @@ const PRODUCTS = [
   },
   {
     id: "solano", name: "Solano", place: "Costa del Sol, Spain",
-    image: "destination-spain", map: 8,
+    image: "destination-spain", mapx: 7, mapy: 48,
     family: "citrus", gender: "unisex", concentration: "Extrait de Parfum",
     popularity: 88, featured: true,
     tagline: "Golden citrus and sun on whitewashed stone.",
@@ -87,7 +87,7 @@ const PRODUCTS = [
   },
   {
     id: "valletta", name: "Valletta", place: "Malta",
-    image: "destination-malta", map: 54,
+    image: "destination-malta", mapx: 41, mapy: 72,
     family: "woody", gender: "him", concentration: "Extrait de Parfum",
     popularity: 85,
     tagline: "Sun-bleached limestone, cedar and sea salt.",
@@ -99,7 +99,7 @@ const PRODUCTS = [
   },
   {
     id: "bodrum", name: "Bodrum", place: "Bodrum, Turkey",
-    image: "destination-turkey", map: 90,
+    image: "destination-turkey", mapx: 75, mapy: 47,
     family: "aromatic", gender: "unisex", concentration: "Extrait de Parfum",
     popularity: 87,
     tagline: "Wild herbs, lavender and cool blue water.",

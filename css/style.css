@@ -48,8 +48,9 @@ section{scroll-margin-top:90px}
   backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
 .header-inner{max-width:var(--wrap);margin:0 auto;padding:14px 22px;display:flex;align-items:center;gap:24px}
 .logo{display:flex;align-items:center;gap:12px}
-.logo-mark{width:38px;height:38px;display:grid;place-items:center;border-radius:9px;
-  background:var(--sea-deep);color:var(--gold);font-family:var(--serif);font-size:1.5rem;font-weight:600}
+.logo-mark{width:40px;height:40px;border-radius:9px;background:var(--sea-deep);display:block;
+  object-fit:cover}
+.footer-brand .logo-mark{width:52px;height:52px}
 .logo-text{font-family:var(--serif);font-size:1.3rem;font-weight:600;letter-spacing:.5px;line-height:1;display:flex;flex-direction:column}
 .logo-text small{font-family:var(--sans);font-size:.56rem;letter-spacing:.3em;text-transform:uppercase;color:var(--muted);margin-top:3px}
 .main-nav{margin-left:auto;display:flex;gap:26px}
@@ -275,7 +276,8 @@ section{scroll-margin-top:90px}
 .drawer-body{flex:1;overflow-y:auto;padding:12px 18px 18px;display:flex;flex-direction:column}
 .drawer-empty{text-align:center;padding:50px 0}
 .drawer-line{display:grid;grid-template-columns:46px 1fr auto;gap:12px;align-items:center;padding:12px 0;border-bottom:1px solid var(--line)}
-.drawer-thumb{background:var(--sand);border-radius:8px;padding:4px}
+.drawer-thumb{background:var(--sand);border-radius:8px;overflow:hidden;width:46px;aspect-ratio:4/5;display:block}
+.drawer-thumb img{width:100%;height:100%;object-fit:cover;display:block}
 .drawer-name{font-weight:500;display:block}
 .drawer-main .muted{font-size:.8rem}
 .drawer-foot{margin-top:auto;padding-top:16px}
@@ -364,31 +366,39 @@ section{scroll-margin-top:90px}
 
 /* ---------- coast map (home) ---------- */
 .coastmap{padding-top:26px}
-.map-wrap{position:relative;max-width:var(--wrap);margin:30px auto 0;
-  background:linear-gradient(180deg,var(--foam) 0%,var(--sand) 100%);
-  border:1px solid var(--line);border-radius:var(--radius);padding:52px 26px 44px}
-.map-rail{position:absolute;left:6%;right:6%;top:84px;height:0;
-  border-top:2px dashed var(--gold);opacity:.55}
-.map-stops{position:relative;display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
-.map-stop{flex:1 1 120px;max-width:160px;display:flex;flex-direction:column;align-items:center;
-  text-align:center;gap:6px;color:var(--ink);text-decoration:none}
-.stop-dot{display:grid;place-items:center;width:34px;height:34px;border-radius:50%;
-  background:var(--paper);border:2px solid var(--gold);color:var(--gold);
-  box-shadow:0 4px 12px rgba(14,58,79,.12);transition:transform .25s ease,background .25s ease,color .25s ease}
-.map-stop:hover .stop-dot,.map-stop:focus-visible .stop-dot{transform:scale(1.14) rotate(8deg);
-  background:var(--gold);color:#fff}
-.stop-name{font-family:var(--serif);font-size:1.3rem;font-weight:600;line-height:1;margin-top:4px}
-.map-stop:hover .stop-name{color:var(--sea)}
-.stop-place{font-size:.76rem;color:var(--muted);letter-spacing:.03em}
-/* family accent on each stop dot */
-.map-stop.coll-marine .stop-dot{border-color:#2C6E88;color:#2C6E88}
-.map-stop.coll-citrus .stop-dot{border-color:#B98E22;color:#B98E22}
-.map-stop.coll-woody .stop-dot{border-color:#6F5236;color:#6F5236}
-.map-stop.coll-aromatic .stop-dot{border-color:#556F38;color:#556F38}
-.map-stop.coll-amber .stop-dot{border-color:#A65E27;color:#A65E27}
+.map-figure{position:relative;max-width:var(--wrap);margin:30px auto 0;border-radius:var(--radius);
+  overflow:hidden;box-shadow:var(--shadow);border:1px solid var(--line);line-height:0}
+.map-bg,.map-bg img{display:block;width:100%;height:auto}
+.map-route{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:1}
+.map-pin{position:absolute;transform:translate(-50%,-50%);z-index:2;text-decoration:none;line-height:1}
+.map-pin-dot{display:block;width:14px;height:14px;border-radius:50%;background:var(--gold);
+  border:2px solid #fff;box-shadow:0 2px 7px rgba(0,0,0,.45);transition:transform .2s ease;position:relative}
+.map-pin-dot::after{content:"";position:absolute;left:50%;top:50%;width:100%;height:100%;
+  border-radius:50%;border:2px solid var(--gold);transform:translate(-50%,-50%);
+  animation:pin-pulse 2.6s ease-out infinite}
+@keyframes pin-pulse{0%{opacity:.7;transform:translate(-50%,-50%) scale(1)}
+  100%{opacity:0;transform:translate(-50%,-50%) scale(3)}}
+.map-pin-label{position:absolute;left:50%;bottom:calc(100% + 9px);transform:translateX(-50%);
+  white-space:nowrap;background:rgba(251,248,242,.96);border:1px solid var(--line);border-radius:9px;
+  padding:5px 10px;text-align:center;opacity:0;transition:opacity .2s ease;pointer-events:none;
+  box-shadow:0 8px 18px rgba(14,58,79,.2)}
+.map-pin-label strong{display:block;font-family:var(--serif);font-size:1.02rem;color:var(--sea-deep);line-height:1.1}
+.map-pin-label small{display:block;font-size:.7rem;color:var(--muted)}
+.map-pin:hover .map-pin-dot,.map-pin:focus-visible .map-pin-dot{transform:scale(1.35)}
+.map-pin:hover .map-pin-label,.map-pin:focus-visible .map-pin-label{opacity:1}
+
+/* clickable legend under the map (and the main interface on touch) */
+.map-legend{max-width:var(--wrap);margin:18px auto 0;list-style:none;display:flex;flex-wrap:wrap;
+  gap:10px;justify-content:center}
+.map-legend a{display:inline-flex;align-items:baseline;gap:8px;padding:7px 14px;border:1px solid var(--line);
+  border-radius:999px;background:var(--paper);text-decoration:none;color:var(--ink);transition:.2s}
+.map-legend a:hover{border-color:var(--gold);box-shadow:var(--shadow);transform:translateY(-2px)}
+.map-legend .lg-name{font-family:var(--serif);font-size:1.05rem;font-weight:600}
+.map-legend small{color:var(--muted);font-size:.74rem}
+.map-legend .dot{width:9px;height:9px;border-radius:50%;align-self:center}
+.map-legend .coll-marine .dot,.map-legend .dot.coll-marine{background:#2C6E88}
 
 @media (max-width:640px){
-  .map-rail{display:none}
-  .map-stops{gap:22px}
-  .map-stop{flex:1 1 40%}
+  .map-pin-dot{width:11px;height:11px}
+  .map-legend a{padding:6px 11px}
 }

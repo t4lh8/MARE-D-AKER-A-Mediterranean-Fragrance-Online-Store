@@ -108,6 +108,15 @@
     "source": "journal-valletta.webp.png"
   },
   {
+    "name": "map-mediterranean",
+    "role": "map",
+    "width": 1600,
+    "height": 900,
+    "jpg_kb": 328,
+    "webp_kb": 267,
+    "source": "mediterranean-map-texture.webp.png"
+  },
+  {
     "name": "packaging-box",
     "role": "story",
     "width": 1400,

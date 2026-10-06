@@ -64,7 +64,7 @@ function drawerHTML() {
   return `
     ${lines.map((l) => `
       <div class="drawer-line">
-        <div class="drawer-thumb">${Art.bottle(l.product, { w: 46, h: 69, monogram: false })}</div>
+        <a class="drawer-thumb" href="#/product/${l.id}" data-action="close-drawer"><img src="assets/images/${l.product.image}.jpg" alt="${esc(l.product.name)}" loading="lazy"></a>
         <div class="drawer-main">
           <span class="drawer-name">${esc(l.product.name)}</span>
           <span class="muted">${l.ml} ml · ${l.qty} × ${money(l.price)}</span>
