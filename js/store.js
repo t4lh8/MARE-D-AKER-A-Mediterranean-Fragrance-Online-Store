@@ -11,7 +11,9 @@ const Store = (() => {
     try { return JSON.parse(localStorage.getItem(KEY)) || []; }
     catch { return []; }
   };
-  let cart = load();
+  // Drop any saved lines whose product no longer exists (e.g. an old catalogue
+  // left in localStorage), so the bag never chokes on a missing product.
+  let cart = load().filter((l) => l && PRODUCTS.some((p) => p.id === l.id));
 
   const save = () => {
     try { localStorage.setItem(KEY, JSON.stringify(cart)); } catch {}
@@ -46,9 +48,10 @@ const Store = (() => {
   function detailed() {
     return cart.map((l) => {
       const p = product(l.id);
+      if (!p) return null;
       const price = sizePrice(p, l.ml);
       return { ...l, product: p, price, lineTotal: price * l.qty };
-    });
+    }).filter(Boolean);
   }
 
   const subtotal = () => detailed().reduce((s, l) => s + l.lineTotal, 0);
